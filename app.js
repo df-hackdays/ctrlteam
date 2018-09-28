@@ -6,7 +6,6 @@ var logger = require('morgan');
 var mongoose = require('mongoose');
 
 mongoose.connect('mongodb://scotiahacker:gh43fbA*2GVal@ds161041.mlab.com:61041/scotiahack');
-//mongoose.connect('mongodb://127.0.0.1/scotiahack');
 mongoose.connection.on('open', conn => console.log('info:mongo connection success'));
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -43,17 +42,17 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-const LectureModel = require('./models/lecture');
-
-const lecture1 = new LectureModel({
-  title: 'sddf',
-  questions: [{
-    title: 'sample question',
-    choices: [{
-      answer: 'sdfsdf'
-    }],
-  }],
-  answer: 1
-});
-lecture1.save((err, doc) => console.log(err, doc));
+// const LectureModel = require('./models/lecture');
+//
+// const lecture1 = new LectureModel({
+//   title: 'sddf',
+//   questions: [{
+//     title: 'sample question',
+//     choices: [{
+//       answer: 'sdfsdf'
+//     }],
+//   }],
+//   answer: 1
+// });
+// lecture1.save((err, doc) => console.log(err, doc));
 module.exports = app;
