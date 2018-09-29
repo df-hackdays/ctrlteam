@@ -24,7 +24,7 @@ class Question extends Component {
         </div>
       );
     });
-    return (<div><strong>{this.props.question.question}</strong>{options}</div>);
+    return (<div className="Question"><strong>{this.props.question.problem}</strong>{options}</div>);
   }
 }
 

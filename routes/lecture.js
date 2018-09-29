@@ -18,6 +18,7 @@ router.get('/', function(req, res, next) {
     }
     LectureModel.findById(currentLession.lecture_id)
     .then(lecture => {
+      //filer out ino
       res.jsonp(lecture);
     });
   });

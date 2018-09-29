@@ -28,15 +28,19 @@ export default class UsersPage extends Component {
     return (
       <div className="HomePage">
         <h2>Welcome to {this.state.lecture.title}</h2>
-        <iframe
-          className="video-player"
-          width="560"
-          height="315"
-          src={link}
-          frameBorder="0"
-          allow="autoplay;
+        <div className="embed-responsive embed-responsive-16by9">
+          <iframe
+            className="video-player"
+            width="560"
+            height="315"
+            src={link}
+            frameBorder="0"
+            allow="autoplay;
           encrypted-media" allowFullScreen></iframe>
-        <Link to="/quiz" className="btn btn-primary">Quiz</Link>
+        </div>
+        <div style={{marginTop: "3em", textAlign: "right"}}>
+          I am done with the lecture. Take me to <Link to="/quiz" className="btn btn-primary">Quiz</Link>
+        </div>
       </div>
     );
   }
