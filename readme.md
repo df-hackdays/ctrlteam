@@ -35,21 +35,21 @@ Section 4. Benefits and Costs
 
 Section 5. Implementation Method
 	Tool Stack Composition (non-exhaustive list):
-		○ Private Youtube videos of varying lengths, mostly short to accommodate various learning absorption rates
-		○ Cloud Application Platform
-		○ QnA maker AI - intelligent Q&A chatbot
-		○ MongoDB, REACT, Node.js
-		○ Python + Tensorflow or similar
+		* Private Youtube videos of varying lengths, mostly short to accommodate various learning absorption rates
+		* Cloud Application Platform
+		* QnA maker AI - intelligent Q&A chatbot
+		* MongoDB, REACT, Node.js
+		* Python + Tensorflow or similar
 
 	High-level walkthrough how it will work.
-		To cater to learners with varying experience levels, the learners need to undertake an automated diagnostic testing system (ideally disguised as a game) that adjusts the degree of difficulty (11-levels) of each successive question depending on the learner's skill.  Based on the overall score, a trained model will determine how succeeding lessons are delivered based on how the learner answered the questions. Factors include, but not limited to: 
-			§ Speed of correct response - level of confidence about the topic
-			§ Incorrect responses - consider adding to next/future lesson
-			§ Partial marks on hard questions - consider introducing reminder/refresher vs. a full lesson next
+		To cater to learners with varying experience levels, the learners need to undertake an automated diagnostic testing 			system (ideally disguised as a game) that adjusts the degree of difficulty (11-levels) of each successive question 			depending on the learner's skill.  Based on the overall score, a trained model will determine how succeeding lessons are 		delivered based on how the learner answered the questions. Factors include, but not limited to: 
+			* Speed of correct response - level of confidence about the topic
+			* Incorrect responses - consider adding to next/future lesson
+			* Partial marks on hard questions - consider introducing reminder/refresher vs. a full lesson next
 		
-		The learner starts a lesson determined to be the best fit based on their latest score.  After the lesson, another set of adaptive questions will be introduced following the same "intelligent delivery" method. This repeats until the end of the module. 
+		The learner starts a lesson determined to be the best fit based on their latest score.  After the lesson, another set of 		adaptive questions will be introduced following the same "intelligent delivery" method. This repeats until the end of the 		module. 
 		
-		Learners can finish at their own pace with easy access to mentors and instructors anytime they are stuck. They will also have access to an intelligent Q&A bot where most common questions asked previously will be stored.
+		Learners can finish at their own pace with easy access to mentors and instructors anytime they are stuck. They will also 		have access to an intelligent Q&A bot where most common questions asked previously will be stored.
 		
 		2.0 version: ML will auto-stitch short videos into consumable chunks depending on the adaptive exam results.
 
