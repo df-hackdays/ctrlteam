@@ -5,6 +5,7 @@ import logo from './logo.png';
 import HomePage from './pages/home';
 import AdminPage from './pages/admin';
 import QuizPage from './pages/quiz';
+import RedoPage from './pages/redo';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.scss';
@@ -20,12 +21,16 @@ class App extends Component {
             <h1>Class Room</h1>
             </Link>
           </div>
+          <div>
+            Paul Barretto
+          </div>
         </div>
         <div className="container">
           <Switch>
             <Route exact path="/" component={HomePage} />
             <Route exact path="/admin" component={AdminPage} />
             <Route exact path="/quiz" component={QuizPage} />
+            <Route exact path="/redo" component={RedoPage} />
           </Switch>
         </div>
         <div className="footer">

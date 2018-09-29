@@ -4,7 +4,7 @@ const Lecture = new mongoose.Schema({
   lecture_id: mongoose.Schema.Types.ObjectId,
   completed: [mongoose.Schema.Types.ObjectId],
   count: Number,
-  done: String
+  done: Boolean
 });
 
 const User = new mongoose.Schema({

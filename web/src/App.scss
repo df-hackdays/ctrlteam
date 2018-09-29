@@ -9,6 +9,9 @@ body {
     margin-bottom: 2em;
     background-color: black;
     color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 
     > div, h1 {
       vertical-align: middle;

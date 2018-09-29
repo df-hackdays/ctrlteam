@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 const API_URL = ((process.env.NODE_ENV === 'development') ? 'http://localhost:3000' : window.location.origin ) + '/api';
@@ -33,19 +34,23 @@ export default class UsersPage extends Component {
     super(...arguments);
     this.state = {
       passed: false,
+      submitted: false,
       lecture: {},
-      userAnswer: {}
+      userAnswer: {
+        lecture_id: null,
+        questions: {}
+      }
     };
     this.onAnswer = (question, answer) => {
       const userAnswer = this.state.userAnswer;
-      userAnswer[question._id] = answer;
+      userAnswer.questions[question._id] = answer;
+      this.setState({userAnswer});
     }
     this.onSubmit = () => {
       axios.post(`${API_URL}/quiz`, {...this.state.userAnswer})
       .then(payload => payload.data)
       .then(result => {
-        this.setState({passed: true})
-        console.log(result);
+        this.setState({passed: result.pass, submitted: true});
       })
       .catch(console.log);
     };
@@ -54,6 +59,9 @@ export default class UsersPage extends Component {
     return axios.get(`${API_URL}/lecture`)
     .then(payload => payload.data)
     .then(lecture => {
+      const {userAnswer} = this.state;
+      userAnswer.lecture_id = lecture._id;
+      this.setState({userAnswer})
       this.setState({lecture})
     })
     .catch(err => {
@@ -62,7 +70,7 @@ export default class UsersPage extends Component {
     });
   }
   render() {
-    if(!this.state.lecture) {
+    if(!this.state.lecture || !this.state.lecture.questions) {
       return null;
     }
     const questions = (this.state.lecture.questions || []).map((question, index) => {
@@ -72,20 +80,29 @@ export default class UsersPage extends Component {
         </li>
       );
     });
-    if(this.state.passed) {
+    if(this.state.submitted) {
+      if(this.state.passed) {
+        return (
+          <div className="QuizPage">
+            <h2>Quiz</h2>
+            <div className="alert alert-success">Congratulations! You passed.</div>
+          </div>
+        );
+      }
       return (
         <div className="QuizPage">
-          <h2>Quiz</h2>
-          <div className="alert alert-success">Congratulations! You passed.</div>
+          <Redirect to="/redo" />
         </div>
       );
     }
+
+    const disableSubmit = Object.keys(this.state.userAnswer.questions).length !== this.state.lecture.questions.length;
     return (
       <div className="QuizPage">
         <h2>Quiz</h2>
         <h3>{this.state.lecture.title}</h3>
         <ol>{questions}</ol>
-        <button type="button" className="btn btn-primary" onClick={this.onSubmit}>Submit</button>
+        <button type="button" className="btn btn-primary" onClick={this.onSubmit} disabled={disableSubmit}>Submit</button>
       </div>
     );
   }
