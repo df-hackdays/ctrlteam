@@ -17,7 +17,7 @@ router.post('/', function(req, res, next) {
         const question = lecture.questions.find(q => q._id.equals(question_id));
         const correct_answer = question.answers.find(ans => !!ans.correct);
         if(correct_answer.answer === user_answer) {
-          completed.push(correct_answer._id);
+          completed.push(question._id);
         }
       });
       UserModel
@@ -48,6 +48,15 @@ router.post('/', function(req, res, next) {
         .catch(next);
     })
     .catch(next);
+});
+
+router.post('/reset', (req, res, next) => {
+  UserModel.findOne().then(user => {
+    user.lectures = [];
+    user.save().then(() => res.jsonp({
+      success: true
+    })).catch(next);
+  }).catch(next);
 });
 
 module.exports = router;

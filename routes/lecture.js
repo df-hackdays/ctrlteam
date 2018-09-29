@@ -12,13 +12,23 @@ router.get('/', function(req, res, next) {
     const notComplete = user.lectures.find(lecture => !lecture.done);
     return notComplete;
   })
-  .then((currentLession) => {
-    if(!currentLession) {
+  .then((currentLecture, user) => {
+    if(!currentLecture) {
       return LectureModel.findOne().then(lecture => res.jsonp(lecture));
     }
-    LectureModel.findById(currentLession.lecture_id)
+
+    console.log("currentlecture", currentLecture);
+    LectureModel.findById(currentLecture.lecture_id)
     .then(lecture => {
       //filer out ino
+      const pendingQuestions = [];
+      lecture.questions.forEach(q => {
+        const found = currentLecture.completed.find(c => q._id.equals(c));
+        if(!found) {
+          pendingQuestions.push(q);
+        }
+      });
+      lecture.questions = pendingQuestions;
       res.jsonp(lecture);
     });
   });
