@@ -25,6 +25,9 @@ app.use(express.static(path.join(__dirname, 'web/build')));
 
 //app.use('/', indexRouter);
 app.use('/api/users', usersRouter);
+app.use('/api/lecture', require('./routes/lecture'));
+app.use('/api/quiz', require('./routes/quiz'));
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
