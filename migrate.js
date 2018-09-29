@@ -5,31 +5,32 @@ mongoose.connect('mongodb://scotiahacker:gh43fbA*2GVal@ds161041.mlab.com:61041/s
 var LectureModel = require('./models/lecture');
 
 var lecture1 = new LectureModel({
-	"title": "Lecture 1",
-    "vlink": "6tjYC86iV5E",
+    "title": "Lecture 2",
+    "vlink": "njTh_OwMljA",
+    "number": 2,
     "questions": [
         {
-            "problem": "What is access time complexity of an array of size n?",
+            "videos": [
+                "NobHlGUjV3g",
+                "vcQIFT79_50",
+                "MZJhZTXhapU"
+            ],
+            "problem": "What is access time complexity of an linked list of size n?",
             "answers": [
                 {
                     "answer": "1",
-                    "correct": "true"
+                    "correct": false
                 },
                 {
                     "answer": "n",
-                    "correct": "false"
+                    "correct": true
                 },
                 {
                     "answer": "n^2",
-                    "correct": "false"
+                    "correct": false
                 }
             ]
         }
-    ],
-    "videos": [
-        "VIQoUghHSxU",
-        "RXWO3mFuW-I",
-        "pGkSHeEZLMU"
     ]
 });
 lecture1.save(console.log);
